@@ -1,0 +1,455 @@
+<robot
+  name="elfin5" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:include filename="$(find elfin_description)/urdf/materials.xacro" />
+  
+  <xacro:include filename="$(find elfin_description)/urdf/elfin_robot.gazebo" />
+  
+  <xacro:include filename="$(find elfin_description)/urdf/elfin_transmission.xacro" />
+  
+  <xacro:property name="PI" value="3.1415926535897931"/>
+  
+  <xacro:property name="density" value="3.09"/>
+  
+  <link name="world"/>
+  
+  <joint name="world_base" type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="world" />
+    <child
+      link="elfin_base_link" />
+  </joint>
+  
+  <link name="elfin_base_link"/>
+  
+  <joint name="elfin_base_joint" type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="elfin_base_link" />
+    <child
+      link="elfin_base" />
+  </joint>
+  
+ <link
+    name="elfin_base">
+    <inertial>
+      <origin
+        xyz="-0.000759276386766298 5.75087291643996E-06 0.0302936529364059"
+        rpy="0 0 0" />
+      <mass
+        value="0.976055991186305" />
+      <inertia
+        ixx="0.00157733373629581"
+        ixy="1.16231027909901E-07"
+        ixz="-2.16838482265701E-05"
+        iyy="0.0014460262404242"
+        iyz="-6.75796232258122E-08"
+        izz="0.00236575468413022" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="elfin_link1">
+    <inertial>
+      <origin
+        xyz="2.74291285858877E-06 -0.00431106908088009 -0.0357493000420957"
+        rpy="0 0 0" />
+      <mass
+        value="3.25128102774055" />
+      <inertia
+        ixx="0.0131139015939654"
+        ixy="1.53830686193534E-07"
+        ixz="4.14641049481159E-07"
+        iyy="0.0123861178713592"
+        iyz="0.00240614664669851"
+        izz="0.00712273876232631" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="elfin_joint1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.22"
+      rpy="0 0 0" />
+    <parent
+      link="elfin_base" />
+    <child
+      link="elfin_link1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="34"
+      velocity="1.57" />
+  </joint>
+  <link
+    name="elfin_link2">
+    <inertial>
+      <origin
+        xyz="-4.61141930520168E-06 0.1591743105703 0.127676233728645"
+        rpy="0 0 0" />
+      <mass
+        value="2.80251415493372" />
+      <inertia
+        ixx="0.0472004127058612"
+        ixy="-3.78127975165949E-06"
+        ixz="2.96484076164973E-07"
+        iyy="0.00279445987467469"
+        iyz="0.0015424585085081"
+        izz="0.0478757132444163" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="elfin_joint2"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="elfin_link1" />
+    <child
+      link="elfin_link2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.35"
+      upper="2.35"
+      effort="104"
+      velocity="1.27" />
+  </joint>
+  <link
+    name="elfin_link3">
+    <inertial>
+      <origin
+        xyz="0.0290082764878197 8.22344842790907E-06 -0.00396673307169731"
+        rpy="0 0 0" />
+      <mass
+        value="1.98577160325313" />
+      <inertia
+        ixx="0.00325219349943881"
+        ixy="-2.70050559654686E-07"
+        ixz="-0.00114506857457836"
+        iyy="0.00594604197825753"
+        iyz="7.00611681888754E-07"
+        izz="0.00528005541994538" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="elfin_joint3"
+    type="revolute">
+    <origin
+      xyz="0 0.38 0"
+      rpy="-3.1416 0 1.5708" />
+    <parent
+      link="elfin_link2" />
+    <child
+      link="elfin_link3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.61"
+      upper="2.61"
+      effort="69"
+      velocity="1.57" />
+  </joint>
+  <link
+    name="elfin_link4">
+    <inertial>
+      <origin
+        xyz="-3.37325282928927E-05 -0.059246634833044 0.248712399920572"
+        rpy="0 0 0" />
+      <mass
+        value="1.3966627675706" />
+      <inertia
+        ixx="0.0146417786566676"
+        ixy="-1.72570245202171E-06"
+        ixz="6.27583250069289E-06"
+        iyy="0.0128389262643824"
+        iyz="0.00385606704922265"
+        izz="0.00311370666742545" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="elfin_joint4"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="elfin_link3" />
+    <child
+      link="elfin_link4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="69"
+      velocity="1.57" />
+  </joint>
+  <link
+    name="elfin_link5">
+    <inertial>
+      <origin
+        xyz="-1.05027703236487E-06 -0.0219935502921469 -0.00313939706763143"
+        rpy="0 0 0" />
+      <mass
+        value="1.1871798415152" />
+      <inertia
+        ixx="0.00223607662477792"
+        ixy="7.69598522894212E-08"
+        ixz="1.87231069600643E-07"
+        iyy="0.00135159849015081"
+        iyz="0.000420977801448324"
+        izz="0.00193236500775232" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="elfin_joint5"
+    type="revolute">
+    <origin
+      xyz="0 0 0.42"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="elfin_link4" />
+    <child
+      link="elfin_link5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.56"
+      upper="2.56"
+      effort="34"
+      velocity="1.57" />
+  </joint>
+  <link
+    name="elfin_link6">
+    <inertial>
+      <origin
+        xyz="0.000198775884625465 -0.00258578679784734 0.122721343515984"
+        rpy="0 0 0" />
+      <mass
+        value="0.227402723766046" />
+      <inertia
+        ixx="0.000125089189356194"
+        ixy="-2.55243323251586E-07"
+        ixz="6.94635018518032E-09"
+        iyy="0.000130642649353076"
+        iyz="1.84890680096304E-07"
+        izz="0.00020396393179538" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://elfin_description/meshes/elfin5/elfin_link6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="elfin_joint6"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="elfin_link5" />
+    <child
+      link="elfin_link6" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="34"
+      velocity="1.57" />
+  </joint>
+  <link
+    name="elfin_end_link">
+  </link>
+  <joint
+    name="elfin_end_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.146"
+      rpy="0 0 0" />
+    <parent
+      link="elfin_link6" />
+    <child
+      link="elfin_end_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  
+  <link name="elfin_dummy_gripper"/>
+  
+  <joint name="elfin_dummy_joint" type="fixed">
+    <origin
+      xyz="0 -0.0935 0"
+      rpy="${PI/2} ${PI/2} 0" />
+    <parent
+      link="elfin_link6" />
+    <child
+      link="elfin_dummy_gripper" />
+  </joint>
+  
+</robot>
