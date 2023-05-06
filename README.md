@@ -15,7 +15,7 @@ Store models of all hans-robot,including xacro files for ROS1 and ROS2
 ---
 ## 机型分类
 ### 旧485模型
-| 机型   |      末端类型      |  高度 |
+| 机型   |      末端类型      |  高度(mm) |
 |----------|:-------------:|------:|
 | E03 |  485末端 | 937.5 |
 | E05 |  485末端 | 1175  |
@@ -25,7 +25,7 @@ Store models of all hans-robot,including xacro files for ROS1 and ROS2
 | E15 |  485末端 | 1732.9|
 
 ### 新485模型
-| 机型   |      末端类型      |  高度 |
+| 机型   |      末端类型      |  高度(mm) |
 |----------|:-------------:|------:|
 | E03 |  485末端 | 928.5 |
 | E05 |  485末端 | 1166  |
@@ -40,14 +40,14 @@ Store models of all hans-robot,including xacro files for ROS1 and ROS2
 
 ---
 ### ethercat模型
-| 机型   |      末端类型      |  高度 |
+| 机型   |      末端类型      |  高度(mm) |
 |----------|:-------------:|------:|
 | E03 |  总线末端 | 939   |
 | E05 |  总线末端 | 1176.5|
 | E05L|  总线末端 | 1326.5|
 | E10 |  总线末端 | 1433.5|
 | E10L|  总线末端 | 1733.5|
-| E15 |  总线末端 | 1733.5|
+| E15 |  总线末端 | 1735.5|
 
 <p align="center">
   <img src="img/elfin_ethercat.png" />
@@ -55,3 +55,22 @@ Store models of all hans-robot,including xacro files for ROS1 and ROS2
 
 ---
 ## 替换模型与xacro文件
+
+ROS1:
+
+1. 将elfin_model的model文件夹中对应末端机型的模型文件拷贝至elfin_robot/elfin_description/meshes中进行替换
+
+2. 将elfin_model的urdf文件夹中对应末端机型模型描述文件拷贝至elfin_robot/elfin_description/urdf中进行替换
+
+3. 重新运行ROS1的启动命令即可
+
+ROS2：
+1. 将elfin_model的model文件夹中对应末端机型的模型文件拷贝至elfin_robot/elfin_description/meshes中进行替换
+
+2. 将elfin_model的urdf文件夹中对应末端机型模型描述文件拷贝至各机型文件夹中的elfin**_ros2_gazebo/urdf中进行替换
+例如：将elfin3的urdf拷贝至elfin3/elfin3_ros2_gazebo/urdf中替换即可
+
+3. 重新编译功能包后运行启动命令即可
+```sh
+$ colcon build
+```
